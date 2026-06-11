@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Reflection - Anders</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --card-light:#334155;
+    --text:#f8fafc;
+    --muted:#cbd5e1;
+    --blue:#38bdf8;
+    --purple:#a855f7;
+    --pink:#ec4899;
+    --green:#22c55e;
+    --orange:#f97316;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:
+    radial-gradient(circle at top left,#7c3aed 0%,transparent 35%),
+    radial-gradient(circle at top right,#0891b2 0%,transparent 30%),
+    radial-gradient(circle at bottom,#ec4899 0%,transparent 25%),
+    var(--bg);
+    color:var(--text);
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.hero{
+    text-align:center;
+    padding:60px 30px;
+    margin-bottom:40px;
+}
+
+.hero h1{
+    font-size:3.5rem;
+    font-weight:900;
+    background:linear-gradient(90deg,#38bdf8,#a855f7,#ec4899);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:1.2rem;
+    color:var(--muted);
+}
+
+.section{
+    background:rgba(30,41,59,0.85);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:35px;
+    margin-bottom:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+
+.section h2{
+    margin-bottom:20px;
+    font-size:1.8rem;
+    color:white;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:linear-gradient(
+        135deg,
+        rgba(56,189,248,0.15),
+        rgba(168,85,247,0.15)
+    );
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:20px;
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#fff;
+}
+
+ul{
+    padding-left:20px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+.timeline{
+    border-left:4px solid var(--blue);
+    margin-left:15px;
+    padding-left:30px;
+}
+
+.timeline-item{
+    margin-bottom:30px;
+    position:relative;
+}
+
+.timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-39px;
+    top:8px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:linear-gradient(45deg,var(--blue),var(--purple));
+}
+
+.timeline-title{
+    font-weight:700;
+    color:var(--blue);
+    font-size:1.1rem;
+}
+
+.quote{
+    background:linear-gradient(
+    135deg,
+    rgba(34,197,94,0.15),
+    rgba(56,189,248,0.15)
+    );
+    border-left:5px solid var(--green);
+    padding:30px;
+    border-radius:20px;
+    font-size:1.2rem;
+    font-style:italic;
+}
+
+.highlight{
+    background:linear-gradient(
+    135deg,
+    rgba(249,115,22,0.15),
+    rgba(236,72,153,0.15)
+    );
+    border-radius:18px;
+    padding:25px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:999px;
+    margin:5px;
+    background:linear-gradient(
+        90deg,
+        var(--blue),
+        var(--purple)
+    );
+    font-weight:600;
+}
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    margin-top:50px;
+    padding-bottom:40px;
+}
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:2.4rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+    <h1>Career Reflection</h1>
+    <p>A reminder of growth, resilience, leadership, and future potential.</p>
+</div>
+
+<div class="section">
+    <h2>Core Identity</h2>
+    <p>
+        Commercial healthcare professional with a rare combination of
+        clinical expertise, sales excellence, leadership experience,
+        entrepreneurship, creativity, and personal resilience.
+    </p>
+
+    <div style="margin-top:20px;">
+        <span class="badge">Leadership</span>
+        <span class="badge">Sales</span>
+        <span class="badge">Healthcare</span>
+        <span class="badge">Strategy</span>
+        <span class="badge">Innovation</span>
+        <span class="badge">Creativity</span>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Key Strengths</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Commercial</h3>
+            <ul>
+                <li>Business development</li>
+                <li>Account management</li>
+                <li>Relationship building</li>
+                <li>Strategic selling</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Leadership</h3>
+            <ul>
+                <li>Team development</li>
+                <li>Cross-country leadership</li>
+                <li>Coaching mindset</li>
+                <li>Strategic execution</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Personal</h3>
+            <ul>
+                <li>Resilience</li>
+                <li>Curiosity</li>
+                <li>Learning agility</li>
+                <li>Persistence</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Career Timeline</h2>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <div class="timeline-title">Clinical & Technical Foundation</div>
+            <p>Built healthcare expertise and deep customer understanding.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-title">Commercial Development</div>
+            <p>Expanded into sales, negotiation, customer development and growth.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-title">Medtronic Leadership Years</div>
+            <p>Managed teams across multiple countries. Combined strategy, leadership, coaching and commercial responsibility.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-title">Biotronik & Organizational Challenges</div>
+            <p>Developed resilience and gained valuable leadership perspective through adversity.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-title">Micromedic & Entrepreneurship</div>
+            <p>Expanded beyond sales into business building, strategy, marketing and company growth.</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="section">
+    <h2>What Gives Energy?</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>People</h3>
+            <p>Developing talent, mentoring others, and creating strong teams.</p>
+        </div>
+
+        <div class="card">
+            <h3>Growth</h3>
+            <p>Building businesses, solving problems, and creating momentum.</p>
+        </div>
+
+        <div class="card">
+            <h3>Purpose</h3>
+            <p>Helping customers and contributing to meaningful healthcare outcomes.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Dream Role</h2>
+
+    <div class="highlight">
+        <ul>
+            <li>Leadership responsibility</li>
+            <li>Commercial ownership</li>
+            <li>People development</li>
+            <li>Strategic influence</li>
+            <li>Healthcare innovation</li>
+            <li>Freedom to build and improve</li>
+            <li>Long-term impact</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Evidence Against Self-Doubt</h2>
+
+    <ul>
+        <li>Led teams across multiple countries.</li>
+        <li>Worked for global healthcare companies.</li>
+        <li>Built expertise across clinical, commercial and leadership domains.</li>
+        <li>Successfully navigated major career transitions.</li>
+        <li>Demonstrated entrepreneurial initiative.</li>
+        <li>Continuously invests in personal growth.</li>
+        <li>Receives strong feedback from senior leaders.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Future Focus</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Leadership</h3>
+            <p>Continue building strategic and executive capabilities.</p>
+        </div>
+
+        <div class="card">
+            <h3>Network</h3>
+            <p>Expand mentoring, board exposure and executive relationships.</p>
+        </div>
+
+        <div class="card">
+            <h3>Business</h3>
+            <p>Deepen experience in company building and ownership.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Final Reflection</h2>
+
+    <div class="quote">
+        My career is not defined by setbacks or temporary uncertainty.
+        It is defined by growth, leadership, curiosity, resilience,
+        and a proven ability to create value for people, customers,
+        and organizations. The evidence suggests that my future opportunities
+        are larger than my current doubts.
+    </div>
+</div>
+
+<div class="footer">
+    Created as a personal career reflection and grounding document.
+</div>
+
+</div>
+
+</body>
+</html>
