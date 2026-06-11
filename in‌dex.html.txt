@@ -1,0 +1,466 @@
+{
+  "document_type": "Personal Operating Manual",
+  "version": "1.0",
+  "created_from": "Post-interview reflection after Wingnet interview",
+  "date": "2026-06-11",
+
+  "executive_summary": {
+    "core_identity": "A builder, teacher, leader and translator between technical, clinical, commercial and human domains.",
+    "one_sentence_summary": "I create value by connecting people, technology and purpose while helping individuals and organizations grow.",
+    "why_this_document_exists": "To preserve an objective record of who I am and what I have accomplished, especially during periods where self-doubt, exhaustion, career uncertainty or life circumstances make it difficult to see my own value."
+  },
+
+  "identity": {
+    "name": "Anders Heebøll-Holm",
+    "birth_year": 1984,
+
+    "core_archetypes": [
+      {
+        "name": "Builder",
+        "description": "Repeatedly drawn toward creating systems, teams, businesses, solutions and communities."
+      },
+      {
+        "name": "Teacher",
+        "description": "Naturally explains, coaches, mentors and helps others understand complex concepts."
+      },
+      {
+        "name": "Leader",
+        "description": "Gains energy from helping people grow and creating environments where others can succeed."
+      },
+      {
+        "name": "Craftsman",
+        "description": "Enjoys mastering technical skills, understanding systems and improving how things work."
+      },
+      {
+        "name": "Translator",
+        "description": "Bridges clinical, technical, commercial and human perspectives."
+      }
+    ],
+
+    "core_values": [
+      "Growth",
+      "Curiosity",
+      "Learning",
+      "Service",
+      "Integrity",
+      "Creativity",
+      "Responsibility",
+      "Helping others",
+      "Mastery",
+      "Meaningful work"
+    ]
+  },
+
+  "interview_reflection": {
+    "company": "Wingnet",
+    "role": "Service Technician",
+
+    "why_the_interview_mattered": [
+      "The interview acted as a mirror that reflected my career from another perspective.",
+      "It provided external validation that my experience and abilities are unusual.",
+      "It challenged my recent negative self-talk.",
+      "It reminded me that others often see strengths that I overlook."
+    ],
+
+    "what_stood_out": [
+      "The administrative director expressed genuine admiration for my career achievements.",
+      "Both interviewers appeared impressed by the breadth of my experience.",
+      "They repeatedly highlighted how unusual it is to find someone with deep technical, clinical and customer-facing experience.",
+      "The conversation left me feeling appreciated and respected."
+    ],
+
+    "most_important_emotional_takeaway": "I left the interview feeling like an exceptional candidate rather than someone trying to prove his worth.",
+
+    "future_reminder": "Whether or not I receive the job offer, the value of the conversation remains. Experienced leaders independently concluded that my background, achievements and combination of competencies are rare."
+  },
+
+  "three_column_model": {
+    "clinical": {
+      "description": "Understanding patients, healthcare environments and clinical workflows.",
+      "examples": [
+        "Operating room support",
+        "Pacemaker implants",
+        "Navigation systems",
+        "Clinical specialist roles",
+        "Hospital customer support"
+      ]
+    },
+
+    "technical": {
+      "description": "Understanding systems, troubleshooting, repair and engineering.",
+      "examples": [
+        "Service engineer",
+        "Service supervisor",
+        "Navigation systems",
+        "Electronic repairs",
+        "3D printing",
+        "Technical customer support"
+      ]
+    },
+
+    "customer_relations": {
+      "description": "Building trust, understanding customer needs and creating long-term relationships.",
+      "examples": [
+        "Sales",
+        "Customer support",
+        "Stakeholder management",
+        "Leadership",
+        "Hospital relationships"
+      ]
+    },
+
+    "competitive_advantage": "The combination of all three domains simultaneously is uncommon."
+  },
+
+  "career_story": {
+
+    "education": {
+      "institution": "Aalborg University",
+      "degree": "Civil Engineer in Health Science and Technology",
+      "started": 2005,
+      "completed": 2010
+    },
+
+    "chapter_1": {
+      "title": "Foundation in Healthcare",
+      "organization": "Aalborg University",
+      "lessons": [
+        "Scientific thinking",
+        "Engineering mindset",
+        "Problem solving",
+        "Healthcare systems"
+      ]
+    },
+
+    "chapter_2": {
+      "title": "Cardiac Devices and Norway",
+      "organization": "St. Jude Medical",
+
+      "achievements": [
+        "Worked with pacemakers and cardiac devices",
+        "Participated in more than 150 implants"
+      ],
+
+      "lessons": [
+        "Clinical responsibility",
+        "Patient impact",
+        "Healthcare realities"
+      ],
+
+      "reason_for_leaving": "Professional success but lack of personal grounding and belonging."
+    },
+
+    "chapter_3": {
+      "title": "Johnson & Johnson",
+
+      "focus": [
+        "Sales",
+        "Commercial experience"
+      ]
+    },
+
+    "chapter_4": {
+      "title": "Navigation Systems Specialist",
+
+      "focus": [
+        "Neurosurgery",
+        "Orthopedics",
+        "ENT surgery",
+        "Tumor resections",
+        "DBS procedures",
+        "Spinal surgery"
+      ],
+
+      "growth": [
+        "Senior specialist responsibilities",
+        "Technical expertise",
+        "Clinical expertise"
+      ]
+    },
+
+    "chapter_5": {
+      "title": "Service Leadership",
+
+      "transition": "Moved from specialist to leader.",
+
+      "responsibilities": [
+        "Building teams",
+        "Hiring employees",
+        "Training employees",
+        "Creating service structures",
+        "Developing people"
+      ]
+    },
+
+    "chapter_6": {
+      "title": "Medtronic Leadership Peak",
+
+      "responsibility": [
+        "Sweden",
+        "Norway",
+        "Denmark",
+        "Finland",
+        "Iceland"
+      ],
+
+      "why_it_was_special": [
+        "Built and developed teams",
+        "Hired people",
+        "Mentored employees",
+        "Balanced customer needs and employee development",
+        "Combined leadership and technical expertise"
+      ],
+
+      "emotional_significance": "The happiest and most fulfilling period of my professional life."
+    },
+
+    "chapter_7": {
+      "title": "Restructuring",
+
+      "what_happened": "Lost management role due to organizational restructuring.",
+
+      "lesson": "Career outcomes are not always reflections of capability."
+    },
+
+    "chapter_8": {
+      "title": "Biotronik",
+
+      "focus": [
+        "Pacemakers",
+        "ICD",
+        "CRTD"
+      ],
+
+      "outcome": "Position removed after commercial challenges in the business.",
+
+      "lesson": "External circumstances can dominate personal performance."
+    },
+
+    "chapter_9": {
+      "title": "Micromedic",
+
+      "focus": [
+        "Eppendorf products",
+        "Business development",
+        "Cold sales",
+        "Market creation"
+      ],
+
+      "challenge": "Building business without expected customer base.",
+
+      "reflection": "Valuable learning experience but not fully aligned with my deepest motivations."
+    }
+  },
+
+  "leadership_philosophy": {
+
+    "what_gives_energy": [
+      "Developing people",
+      "Helping others grow",
+      "Building teams",
+      "Mentoring",
+      "Coaching",
+      "Creating trust",
+      "Solving meaningful problems"
+    ],
+
+    "what_good_leadership_means": [
+      "Believing in people",
+      "Helping people become stronger",
+      "Holding people accountable while supporting them",
+      "Creating an environment where people can succeed"
+    ],
+
+    "leadership_identity": "Leadership is not merely a role. It is a responsibility to help people become better versions of themselves."
+  },
+
+  "dream_job": {
+
+    "core_elements": [
+      "Leadership",
+      "Technical depth",
+      "Human development",
+      "Strategic influence",
+      "Customer impact",
+      "Purpose"
+    ],
+
+    "ideal_environment": [
+      "Healthcare",
+      "Technology",
+      "Innovation",
+      "People development"
+    ],
+
+    "contains": [
+      "Mentoring",
+      "Team building",
+      "Strategy",
+      "Problem solving",
+      "Meaningful impact"
+    ],
+
+    "does_not_contain": [
+      "Pure cold sales",
+      "Pure administration",
+      "Highly political environments",
+      "Work disconnected from human value"
+    ],
+
+    "closest_real_world_example": "The service leadership role at Medtronic."
+  },
+
+  "entrepreneurial_side": {
+
+    "ventures": [
+      "Own business attempts",
+      "Micromedic growth efforts",
+      "Leadership coaching",
+      "Neuroleadership initiatives"
+    ],
+
+    "motivation": "Creating value and building something meaningful."
+  },
+
+  "creative_identity": {
+
+    "drawing": {
+      "studied": true,
+      "focus": [
+        "Classical drawing",
+        "Illustration",
+        "Painting"
+      ]
+    },
+
+    "3d_printing": {
+      "activities": [
+        "Personal projects",
+        "Repairing printers",
+        "Supporting local makerspace",
+        "Creating miniatures"
+      ]
+    },
+
+    "painting": {
+      "activities": [
+        "Miniature painting",
+        "Creative expression"
+      ]
+    },
+
+    "importance": "Creativity is not a hobby. It is a fundamental part of how I think and process the world."
+  },
+
+  "storytelling": {
+
+    "roleplaying": [
+      "Warhammer Game Master",
+      "World building",
+      "Narrative creation"
+    ],
+
+    "toastmasters": [
+      "Public speaking",
+      "Communication",
+      "Finding my voice"
+    ],
+
+    "belief": "The quality of life is influenced not only by experiences themselves but also by how we understand and narrate them."
+  },
+
+  "coaching_and_development": {
+
+    "neuroleadership": true,
+
+    "lifebook_influence": [
+      "Health",
+      "Emotions",
+      "Relationships",
+      "Family",
+      "Career",
+      "Finance",
+      "Intellectual growth",
+      "Environment",
+      "Spiritual development"
+    ],
+
+    "belief": "Leadership development requires whole-life development."
+  },
+
+  "fatherhood": {
+
+    "children": [
+      {
+        "age": "4 years"
+      },
+      {
+        "age": "10 months"
+      }
+    ],
+
+    "current_reality": [
+      "Limited personal time",
+      "Sleep disruption",
+      "High family responsibility",
+      "Reduced energy reserves"
+    ],
+
+    "reflection": "Current circumstances may temporarily reduce confidence and perceived capability without reducing actual capability."
+  },
+
+  "self_awareness": {
+
+    "current_risk": "Negative self-talk",
+
+    "warning_signs": [
+      "Downplaying achievements",
+      "Focusing excessively on weaknesses",
+      "Forgetting objective evidence",
+      "Comparing current energy levels to historical performance"
+    ],
+
+    "counter_strategy": [
+      "Review this document",
+      "Review objective accomplishments",
+      "Seek external perspectives",
+      "Remember that circumstances influence perception"
+    ]
+  },
+
+  "evidence_against_self_doubt": [
+
+    "Completed a civil engineering degree.",
+    "Worked in advanced healthcare environments.",
+    "Participated in more than 150 cardiac implants.",
+    "Supported neurosurgery and complex surgical procedures.",
+    "Built expertise across clinical, technical and commercial domains.",
+    "Managed Nordic service operations.",
+    "Hired and developed employees.",
+    "Built teams.",
+    "Started businesses.",
+    "Studied leadership independently.",
+    "Built coaching programs.",
+    "Developed artistic skills.",
+    "Built technical skills outside work through makerspaces and 3D printing.",
+    "Consistently demonstrates curiosity and growth orientation.",
+    "Receives repeated external validation from senior leaders."
+  ],
+
+  "final_truths": [
+
+    "My career is broader than I often acknowledge.",
+
+    "My combination of technical, clinical, commercial and leadership competencies is unusual.",
+
+    "The happiest periods of my career have involved developing people rather than simply achieving targets.",
+
+    "I am at my best when I am building something meaningful.",
+
+    "Current exhaustion is not evidence of reduced capability.",
+
+    "My value does not depend on whether I receive a specific job offer.",
+
+    "The interview already succeeded because it reminded me of who I am."
+  ]
+}
