@@ -3,1259 +3,955 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategic Profile // Operations Commander</title>
+    <title>⚡ The Human Swiss Army Knife — A Case Study in Doing Too Much</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --void: #030712;
-            --deep-space: #0B1120;
-            --panel: rgba(11, 17, 32, 0.65);
-            --panel-solid: #0f172a;
-            --cyan: #22d3ee;
-            --cyan-dim: rgba(34, 211, 238, 0.12);
-            --amber: #f59e0b;
-            --amber-dim: rgba(245, 158, 11, 0.12);
-            --emerald: #10b981;
-            --emerald-dim: rgba(16, 185, 129, 0.12);
-            --rose: #f43f5e;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --text-tertiary: #64748b;
-            --border: rgba(34, 211, 238, 0.08);
-            --border-hover: rgba(34, 211, 238, 0.25);
-            --glass: rgba(15, 23, 42, 0.4);
+            --bg: #0a0e1a;
+            --bg-card: rgba(15, 20, 35, 0.7);
+            --cyan: #00f0ff;
+            --cyan-soft: rgba(0, 240, 255, 0.1);
+            --orange: #ff9500;
+            --orange-soft: rgba(255, 149, 0, 0.1);
+            --green: #00ff88;
+            --green-soft: rgba(0, 255, 136, 0.1);
+            --pink: #ff5ebc;
+            --pink-soft: rgba(255, 94, 188, 0.1);
+            --yellow: #ffe600;
+            --purple: #a855f7;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --text-faint: #64748b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
-
         body {
-            background: var(--void);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.7;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* ===== BACKGROUND ===== */
-        .bg-layer {
+        /* ===== ANIMATED BG ===== */
+        .bg-orb {
             position: fixed;
-            inset: 0;
-            z-index: -3;
-            background: 
-                radial-gradient(ellipse 80% 60% at 20% 40%, rgba(34,211,238,0.04) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(245,158,11,0.03) 0%, transparent 50%),
-                var(--void);
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: orbFloat 20s ease-in-out infinite alternate;
+        }
+        .orb-1 { width: 600px; height: 600px; background: var(--cyan); top: -200px; left: -100px; animation-delay: 0s; }
+        .orb-2 { width: 500px; height: 500px; background: var(--orange); bottom: -150px; right: -100px; animation-delay: -7s; }
+        .orb-3 { width: 400px; height: 400px; background: var(--pink); top: 40%; left: 50%; animation-delay: -14s; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, -30px) scale(1.1); }
         }
 
-        .nebula {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            opacity: 0.4;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(34,211,238,0.06) 0%, transparent 40%),
-                radial-gradient(circle at 70% 60%, rgba(245,158,11,0.04) 0%, transparent 35%),
-                radial-gradient(circle at 50% 80%, rgba(16,185,129,0.03) 0%, transparent 30%);
-            filter: blur(60px);
-        }
-
-        .starfield {
+        /* ===== PARTICLES ===== */
+        .particles {
             position: fixed;
             inset: 0;
             z-index: -1;
-            background-image:
-                radial-gradient(1.5px 1.5px at 15% 25%, rgba(255,255,255,0.25) 50%, transparent 50%),
-                radial-gradient(1px 1px at 45% 55%, rgba(255,255,255,0.15) 50%, transparent 50%),
-                radial-gradient(2px 2px at 75% 15%, rgba(34,211,238,0.2) 50%, transparent 50%),
-                radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.12) 50%, transparent 50%),
-                radial-gradient(1.5px 1.5px at 35% 85%, rgba(245,158,11,0.15) 50%, transparent 50%),
-                radial-gradient(1px 1px at 65% 35%, rgba(255,255,255,0.18) 50%, transparent 50%),
-                radial-gradient(2px 2px at 25% 65%, rgba(34,211,238,0.12) 50%, transparent 50%),
-                radial-gradient(1px 1px at 95% 45%, rgba(255,255,255,0.1) 50%, transparent 50%);
-            background-size: 500px 400px;
-            animation: drift 100s linear infinite;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: particleRise linear infinite;
+        }
+        @keyframes particleRise {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
 
-        @keyframes drift {
-            from { transform: translateY(0) translateX(0); }
-            to { transform: translateY(-400px) translateX(-100px); }
-        }
-
-        /* ===== HEADER ===== */
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(20px) saturate(1.5);
-            background: rgba(3, 7, 18, 0.75);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .header-inner {
-            max-width: 1280px;
+        /* ===== CONTAINER ===== */
+        .wrap {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 16px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 0 24px;
         }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .brand-mark {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--cyan), var(--amber));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--void);
-            box-shadow: 0 0 30px rgba(34,211,238,0.25);
-        }
-
-        .brand-text h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-
-        .brand-text span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: var(--text-tertiary);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .header-meta {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .meta-pill {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .meta-pill .label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .meta-pill .value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--cyan);
-        }
-
-        .meta-pill .value.amber { color: var(--amber); }
-        .meta-pill .value.emerald { color: var(--emerald); }
 
         /* ===== HERO ===== */
         .hero {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 80px 32px 60px;
+            padding: 100px 0 60px;
+            text-align: center;
             position: relative;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            background: var(--cyan-dim);
-            border: 1px solid rgba(34,211,238,0.2);
-            border-radius: 100px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--cyan);
-            margin-bottom: 24px;
+        .hero-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
 
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--cyan);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
-        .hero h2 {
+        .hero h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(36px, 5vw, 56px);
+            font-size: clamp(32px, 6vw, 52px);
             font-weight: 700;
             line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--cyan) 100%);
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--cyan), var(--pink), var(--orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero p {
+        .hero-sub {
             font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 640px;
-            line-height: 1.7;
-            margin-bottom: 32px;
+            color: var(--text-dim);
+            max-width: 560px;
+            margin: 0 auto 40px;
         }
 
-        .hero-stats {
+        .hero-badges {
             display: flex;
-            gap: 40px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .hero-stat {
-            display: flex;
-            flex-direction: column;
+        .hbadge {
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
-
-        .hero-stat .num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1;
-        }
-
-        .hero-stat .num span {
-            font-size: 14px;
-            color: var(--text-tertiary);
-            font-weight: 400;
-        }
-
-        .hero-stat .desc {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            margin-top: 4px;
-        }
+        .hbadge:hover { transform: translateY(-3px) scale(1.05); }
+        .hb-cyan { background: var(--cyan-soft); border-color: rgba(0,240,255,0.3); color: var(--cyan); }
+        .hb-orange { background: var(--orange-soft); border-color: rgba(255,149,0,0.3); color: var(--orange); }
+        .hb-green { background: var(--green-soft); border-color: rgba(0,255,136,0.3); color: var(--green); }
+        .hb-pink { background: var(--pink-soft); border-color: rgba(255,94,188,0.3); color: var(--pink); }
 
         /* ===== SECTIONS ===== */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 32px 80px;
-        }
-
         .section {
-            margin-bottom: 48px;
-        }
-
-        .section-header-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .section-header-row h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-        }
-
-        .section-header-row .line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border), transparent);
-        }
-
-        .section-header-row .tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 4px 10px;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-        }
-
-        /* ===== CARDS ===== */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 16px;
-        }
-
-        .card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            margin-bottom: 64px;
             opacity: 0;
-            transition: opacity 0.4s;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        .section.visible { opacity: 1; transform: translateY(0); }
 
-        .card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(34,211,238,0.1);
-        }
-
-        .card:hover::before { opacity: 1; }
-
-        .card-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 8px;
-        }
-
-        .card-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.4;
-        }
-
-        .card-value.secondary {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--text-secondary);
-        }
-
-        /* ===== SKILL CARDS ===== */
-        .skill-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
-            backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .skill-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .skill-header {
+        .sec-head {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
+            gap: 14px;
+            margin-bottom: 28px;
         }
-
-        .skill-title-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .skill-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+        .sec-icon {
+            font-size: 28px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            border-radius: 14px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
         }
-
-        .skill-icon.cyan { background: var(--cyan-dim); }
-        .skill-icon.amber { background: var(--amber-dim); }
-        .skill-icon.emerald { background: var(--emerald-dim); }
-
-        .skill-title-group h4 {
+        .sec-head h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-size: 26px;
+            font-weight: 700;
+        }
+        .sec-head .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
         }
 
-        .skill-tier {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            padding: 4px 10px;
-            border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .skill-tier.advanced {
-            background: var(--cyan-dim);
-            color: var(--cyan);
-            border: 1px solid rgba(34,211,238,0.2);
-        }
-
-        .skill-tier.master {
-            background: var(--emerald-dim);
-            color: var(--emerald);
-            border: 1px solid rgba(16,185,129,0.2);
-        }
-
-        .skill-bar-track {
-            height: 4px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .skill-bar-fill {
-            height: 100%;
-            border-radius: 2px;
-            background: linear-gradient(90deg, var(--cyan), var(--amber));
-            width: 0;
-            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 8px 0;
-            padding-left: 18px;
+        /* ===== THE PITCH ===== */
+        .pitch-box {
+            background: linear-gradient(135deg, var(--cyan-soft), var(--pink-soft));
+            border: 1px solid rgba(0,240,255,0.15);
+            border-radius: 20px;
+            padding: 32px;
             position: relative;
-            font-size: 13px;
-            color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            overflow: hidden;
         }
-
-        .skill-list li::before {
+        .pitch-box::before {
             content: '';
             position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--cyan), transparent, var(--pink), transparent);
+            animation: spin 8s linear infinite;
+            opacity: 0.03;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .pitch-box p {
+            position: relative;
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        .pitch-box strong {
+            color: var(--cyan);
+            font-weight: 600;
+        }
+
+        /* ===== SKILL TRIANGLE ===== */
+        .triangle-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .skill-row {
+            display: flex;
+            align-items: stretch;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .skill-block {
+            flex: 1;
+            min-width: 260px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .skill-block:hover {
+            transform: translateY(-6px);
+            border-color: var(--cyan);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(0,240,255,0.08);
+        }
+
+        .skill-block .glow-line {
+            position: absolute;
+            top: 0;
             left: 0;
-            top: 14px;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--cyan);
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--pink), var(--orange));
             opacity: 0.6;
         }
 
-        .skill-list li:last-child { border-bottom: none; }
-
-        .skill-highlight {
-            margin-top: 16px;
-            padding: 12px 16px;
-            background: var(--amber-dim);
-            border-left: 3px solid var(--amber);
-            border-radius: 0 8px 8px 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--amber);
-            line-height: 1.5;
+        .skill-block .emoji {
+            font-size: 36px;
+            margin-bottom: 12px;
+            display: block;
         }
 
-        /* ===== MISSION DEBRIEF ===== */
-        .debrief-grid {
+        .skill-block h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .skill-block .tier {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .tier-cyan { background: var(--cyan-soft); color: var(--cyan); border: 1px solid rgba(0,240,255,0.2); }
+        .tier-orange { background: var(--orange-soft); color: var(--orange); border: 1px solid rgba(255,149,0,0.2); }
+        .tier-green { background: var(--green-soft); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+
+        .skill-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--orange));
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .skill-bar-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4));
+            border-radius: 3px;
+        }
+
+        .skill-block ul {
+            list-style: none;
+        }
+        .skill-block ul li {
+            padding: 7px 0;
+            padding-left: 18px;
+            position: relative;
+            font-size: 14px;
+            color: var(--text-dim);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .skill-block ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--cyan);
+            font-size: 11px;
+        }
+        .skill-block ul li:last-child { border-bottom: none; }
+
+        .skill-kicker {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: rgba(0,240,255,0.05);
+            border-left: 3px solid var(--cyan);
+            border-radius: 0 10px 10px 0;
+            font-size: 13px;
+            color: var(--text);
+            font-style: italic;
+        }
+
+        /* ===== INTERVIEW STORY ===== */
+        .story-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .story-intro {
+            font-size: 16px;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .interviewer-pair {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
-            margin-bottom: 24px;
         }
 
-        .debrief-stat {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px 24px;
-            backdrop-filter: blur(12px);
-        }
-
-        .debrief-stat .label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 6px;
-        }
-
-        .debrief-stat .value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .debrief-stat .value.success {
-            color: var(--emerald);
-        }
-
-        .interviewer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 16px;
-        }
-
-        .interviewer-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
+        .person-card {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
             padding: 24px;
-            backdrop-filter: blur(12px);
             position: relative;
-            overflow: hidden;
-        }
-
-        .interviewer-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%);
-        }
-
-        .interviewer-rank {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: var(--amber);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 4px;
-        }
-
-        .interviewer-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-
-        .interviewer-note {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-
-        .interviewer-quote {
-            padding: 12px 16px;
-            background: var(--cyan-dim);
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--cyan);
-            font-style: italic;
-            line-height: 1.5;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ===== TIMELINE ===== */
-        .timeline-wrap {
-            position: relative;
-            padding-left: 28px;
-        }
-
-        .timeline-wrap::before {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 8px;
-            bottom: 8px;
-            width: 2px;
-            background: linear-gradient(180deg, var(--cyan), var(--amber), var(--emerald));
-            border-radius: 1px;
-            opacity: 0.3;
-        }
-
-        .timeline-entry {
-            position: relative;
-            margin-bottom: 20px;
-            padding: 24px;
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            backdrop-filter: blur(12px);
             transition: all 0.3s ease;
         }
-
-        .timeline-entry:hover {
-            border-color: var(--border-hover);
+        .person-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-4px);
         }
-
-        .timeline-entry::before {
-            content: '';
-            position: absolute;
-            left: -26px;
-            top: 30px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--deep-space);
-            border: 2px solid var(--cyan);
-            box-shadow: 0 0 0 4px rgba(34,211,238,0.1);
+        .person-card .role-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--orange);
+            margin-bottom: 6px;
         }
-
-        .timeline-entry.completed::before {
-            background: var(--emerald);
-            border-color: var(--emerald);
-            box-shadow: 0 0 0 4px rgba(16,185,129,0.15);
-        }
-
-        .timeline-entry.active::before {
-            background: var(--amber);
-            border-color: var(--amber);
-            box-shadow: 0 0 0 4px rgba(245,158,11,0.15);
-            animation: dotPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes dotPulse {
-            0%, 100% { box-shadow: 0 0 0 4px rgba(245,158,11,0.15); }
-            50% { box-shadow: 0 0 0 8px rgba(245,158,11,0.05); }
-        }
-
-        .timeline-entry .company {
+        .person-card .name {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 16px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        .person-card .note {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .person-card .quote {
+            padding: 12px 14px;
+            background: var(--orange-soft);
+            border-radius: 10px;
+            font-size: 13px;
+            color: var(--orange);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .what-they-said {
+            margin-top: 24px;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--green-soft), var(--cyan-soft));
+            border: 1px solid rgba(0,255,136,0.15);
+            border-radius: 16px;
+        }
+        .what-they-said h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: var(--green);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .what-they-said ul {
+            list-style: none;
+        }
+        .what-they-said ul li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 14px;
+            color: var(--text);
+        }
+        .what-they-said ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        /* ===== TIMELINE ===== */
+        .tl-wrap {
+            position: relative;
+            padding-left: 32px;
+        }
+        .tl-wrap::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--cyan), var(--orange), var(--pink), var(--green));
+            border-radius: 1px;
+            opacity: 0.4;
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .tl-item:hover {
+            border-color: rgba(255,255,255,0.12);
+            transform: translateX(4px);
+        }
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 28px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--cyan);
+            box-shadow: 0 0 0 4px rgba(0,240,255,0.1);
+        }
+        .tl-item.done::before {
+            background: var(--green);
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px rgba(0,255,136,0.15);
+        }
+        .tl-item.now::before {
+            background: var(--orange);
+            border-color: var(--orange);
+            box-shadow: 0 0 0 4px rgba(255,149,0,0.15);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(255,149,0,0.15); }
+            50% { box-shadow: 0 0 0 10px rgba(255,149,0,0.05); }
+        }
+
+        .tl-item .company {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
             margin-bottom: 4px;
         }
-
-        .timeline-entry .role {
+        .tl-item .role {
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--text-dim);
             font-weight: 500;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
-
-        .timeline-entry .meta {
+        .tl-item .meta {
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px;
-            color: var(--text-tertiary);
+            color: var(--text-faint);
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-bottom: 10px;
         }
-
-        .timeline-entry .achievement {
+        .tl-item .win {
             font-size: 13px;
-            color: var(--emerald);
+            color: var(--green);
             margin-bottom: 6px;
         }
-
-        .timeline-entry .note {
+        .tl-item .context {
             font-size: 13px;
-            color: var(--text-tertiary);
+            color: var(--text-faint);
             font-style: italic;
         }
-
-        .timeline-entry .highlight {
+        .tl-item .peak {
             margin-top: 12px;
             padding: 10px 14px;
-            background: var(--amber-dim);
-            border-radius: 8px;
+            background: var(--orange-soft);
+            border-radius: 10px;
             font-size: 13px;
-            color: var(--amber);
+            color: var(--orange);
             line-height: 1.5;
         }
 
-        /* ===== HIGHLIGHTS ===== */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 16px;
-        }
-
-        .highlight-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            backdrop-filter: blur(12px);
-        }
-
-        .highlight-card h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--amber);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .highlight-card ul {
-            list-style: none;
-        }
-
-        .highlight-card ul li {
-            padding: 8px 0;
-            padding-left: 22px;
+        /* ===== UVP BANNER ===== */
+        .uvp {
+            background: linear-gradient(135deg, var(--cyan-soft), var(--pink-soft), var(--orange-soft));
+            border: 1px solid rgba(0,240,255,0.15);
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: center;
             position: relative;
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            overflow: hidden;
         }
-
-        .highlight-card ul li::before {
+        .uvp::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 14px;
-            width: 8px;
-            height: 8px;
-            border-radius: 2px;
-            background: var(--emerald);
-            opacity: 0.7;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--cyan), transparent, var(--pink), transparent, var(--orange), transparent);
+            animation: spin 10s linear infinite;
+            opacity: 0.04;
         }
-
-        .highlight-card ul li:last-child { border-bottom: none; }
-
-        .uvp-banner {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(245,158,11,0.08));
-            border: 1px solid rgba(34,211,238,0.2);
-            text-align: center;
-            padding: 32px;
-        }
-
-        .uvp-banner .uvp-label {
+        .uvp .label {
+            position: relative;
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px;
-            color: var(--amber);
+            color: var(--cyan);
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 12px;
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
         }
-
-        .uvp-banner .uvp-text {
+        .uvp .text {
+            position: relative;
             font-family: 'Space Grotesk', sans-serif;
             font-size: 22px;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-weight: 700;
             line-height: 1.4;
-            max-width: 700px;
+            max-width: 640px;
             margin: 0 auto;
+            background: linear-gradient(135deg, var(--text), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* ===== DREAM JOB ===== */
-        .dream-wrap {
+        .dream-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
-
         .dream-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: 16px;
             padding: 24px;
-            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
         }
-
+        .dream-card:hover {
+            transform: translateY(-4px);
+        }
         .dream-card h4 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
-        .dream-card.must h4 { color: var(--amber); }
+        .dream-card.want h4 { color: var(--green); }
         .dream-card.nice h4 { color: var(--cyan); }
-        .dream-card.avoid h4 { color: var(--rose); }
-
+        .dream-card.nope h4 { color: var(--pink); }
         .dream-card ul {
             list-style: none;
         }
-
         .dream-card ul li {
-            padding: 8px 0;
+            padding: 7px 0;
             padding-left: 20px;
             position: relative;
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--text-dim);
             line-height: 1.5;
         }
+        .dream-card.want ul li::before { content: '★'; position: absolute; left: 0; color: var(--green); }
+        .dream-card.nice ul li::before { content: '◆'; position: absolute; left: 0; color: var(--cyan); }
+        .dream-card.nope ul li::before { content: '✕'; position: absolute; left: 0; color: var(--pink); }
 
-        .dream-card.must ul li::before { content: '★'; position: absolute; left: 0; color: var(--amber); font-size: 10px; }
-        .dream-card.nice ul li::before { content: '◆'; position: absolute; left: 0; color: var(--cyan); font-size: 10px; }
-        .dream-card.avoid ul li::before { content: '✕'; position: absolute; left: 0; color: var(--rose); font-size: 10px; }
-
-        .memory-card {
+        .dream-memory {
             grid-column: 1 / -1;
-            background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(34,211,238,0.08));
-            border: 1px solid rgba(16,185,129,0.2);
+            background: linear-gradient(135deg, var(--green-soft), var(--cyan-soft));
+            border: 1px solid rgba(0,255,136,0.15);
             text-align: center;
             padding: 32px;
         }
-
-        .memory-card .mem-label {
+        .dream-memory .mem-label {
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px;
-            color: var(--emerald);
+            color: var(--green);
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
-
-        .memory-card .mem-text {
+        .dream-memory .mem-text {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 18px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--text);
             line-height: 1.5;
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
         /* ===== REFINERY ===== */
-        .refinery-grid {
+        .ref-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
         }
-
-        .refinery-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
+        .ref-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: 16px;
             padding: 24px;
-            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
         }
-
-        .refinery-card h4 {
+        .ref-card:hover {
+            border-color: rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+        }
+        .ref-card h4 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 16px;
+            color: var(--text);
+            margin-bottom: 14px;
         }
-
-        .tag-cloud {
+        .tag-pool {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
-
-        .tag-pill {
+        .tpill {
             padding: 6px 14px;
-            background: var(--cyan-dim);
-            border: 1px solid rgba(34,211,238,0.15);
             border-radius: 100px;
             font-size: 12px;
-            color: var(--cyan);
             transition: all 0.3s ease;
             cursor: default;
         }
-
-        .tag-pill:hover {
-            background: rgba(34,211,238,0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(34,211,238,0.1);
+        .tpill:hover {
+            transform: translateY(-2px) scale(1.05);
         }
+        .tp-cyan { background: var(--cyan-soft); color: var(--cyan); border: 1px solid rgba(0,240,255,0.2); }
+        .tp-orange { background: var(--orange-soft); color: var(--orange); border: 1px solid rgba(255,149,0,0.2); }
+        .tp-pink { background: var(--pink-soft); color: var(--pink); border: 1px solid rgba(255,94,188,0.2); }
+        .tp-green { background: var(--green-soft); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
 
-        .philosophy-text {
+        .phil-text {
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--text-dim);
             line-height: 1.7;
             font-style: italic;
         }
 
         /* ===== FOOTER ===== */
-        .site-footer {
-            border-top: 1px solid var(--border);
-            padding: 40px 32px;
+        .footer {
             text-align: center;
+            padding: 60px 24px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
-
-        .site-footer p {
+        .footer .big-emoji {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+        .footer p {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--text-tertiary);
-            letter-spacing: 0.05em;
+            font-size: 12px;
+            color: var(--text-faint);
         }
-
-        .site-footer .tagline {
+        .footer .tagline {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 14px;
-            color: var(--text-secondary);
+            font-size: 16px;
+            color: var(--text-dim);
             margin-top: 8px;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .header-inner { padding: 14px 20px; }
-            .hero { padding: 48px 20px 40px; }
-            .container { padding: 0 20px 60px; }
-            .debrief-grid { grid-template-columns: 1fr; }
-            .dream-wrap { grid-template-columns: 1fr; }
-            .hero-stats { gap: 24px; }
-            .header-meta { display: none; }
+            .interviewer-pair { grid-template-columns: 1fr; }
+            .dream-grid { grid-template-columns: 1fr; }
+            .skill-row { flex-direction: column; }
+            .hero { padding: 60px 0 40px; }
         }
 
-        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--void); }
-        ::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.2); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(34,211,238,0.4); }
-
-        /* ===== REVEAL ANIMATION ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--cyan), var(--orange)); border-radius: 3px; }
     </style>
 <base target="_blank">
 </head>
 <body>
-    <div class="bg-layer"></div>
-    <div class="nebula"></div>
-    <div class="starfield"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="particles" id="particles"></div>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="header-inner">
-            <div class="brand">
-                <div class="brand-mark">C</div>
-                <div class="brand-text">
-                    <h1>Strategic Profile</h1>
-                    <span>Operations Commander // Medical Technology</span>
-                </div>
-            </div>
-            <div class="header-meta">
-                <div class="meta-pill">
-                    <span class="label">Status</span>
-                    <span class="value emerald">Available</span>
-                </div>
-                <div class="meta-pill">
-                    <span class="label">Location</span>
-                    <span class="value">Denmark</span>
-                </div>
-                <div class="meta-pill">
-                    <span class="label">Class</span>
-                    <span class="value amber">Hybrid</span>
-                </div>
-            </div>
-        </div>
-    </header>
+    <div class="wrap">
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-badge">Interview — Mission Debrief</div>
-        <h2>Clinical. Technical.<br>Customer-Facing.</h2>
-        <p>A rare hybrid profile combining deep clinical expertise, advanced technical capability, and master-level customer relations — developed across 15+ years in medical technology, from implantable cardiac devices to neurosurgery navigation systems.</p>
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="num">15<span>+</span></div>
-                <div class="desc">Years in MedTech</div>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-emoji">🦾</div>
+            <h1>The Human Swiss Army Knife</h1>
+            <p class="hero-sub">A case study in doing too much — and somehow making it work. 15+ years in medical technology, three skill pillars, and the audacity to think he can fix anything.</p>
+            <div class="hero-badges">
+                <span class="hbadge hb-cyan">🩺 Clinical Expert</span>
+                <span class="hbadge hb-orange">🔧 Technical Wizard</span>
+                <span class="hbadge hb-green">🤝 People Person</span>
+                <span class="hbadge hb-pink">🎨 Secret Artist</span>
             </div>
-            <div class="hero-stat">
-                <div class="num">150<span>+</span></div>
-                <div class="desc">Cardiac Implants</div>
-            </div>
-            <div class="hero-stat">
-                <div class="num">5</div>
-                <div class="desc">Nordic Territories</div>
-            </div>
-            <div class="hero-stat">
-                <div class="num">3</div>
-                <div class="desc">Core Domains</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="container">
-
-        <!-- PROFILE -->
-        <section class="section reveal">
-            <div class="section-header-row">
-                <h3>Commander Overview</h3>
+        <!-- THE PITCH -->
+        <section class="section">
+            <div class="sec-head">
+                <div class="sec-icon">🎯</div>
+                <h2>The 30-Second Pitch</h2>
                 <div class="line"></div>
-                <span class="tag">Identity</span>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-label">Designation</div>
-                    <div class="card-value">Service Technician Candidate</div>
-                </div>
-                <div class="card">
-                    <div class="card-label">Class</div>
-                    <div class="card-value">Hybrid Specialist</div>
-                </div>
-                <div class="card">
-                    <div class="card-label">Education</div>
-                    <div class="card-value secondary">Civil Engineer — Health, Science & Technology<br>Aalborg University (2005–2010)</div>
-                </div>
-                <div class="card">
-                    <div class="card-label">Specializations</div>
-                    <div class="card-value secondary">Clinical Specialist · Technical Specialist · Customer Relations</div>
-                </div>
-                <div class="card">
-                    <div class="card-label">Territory Experience</div>
-                    <div class="card-value secondary">Sweden · Norway · Iceland · Denmark · Finland</div>
-                </div>
-                <div class="card">
-                    <div class="card-label">Current Focus</div>
-                    <div class="card-value secondary">Transitioning from sales back to technical service & team leadership</div>
-                </div>
+            <div class="pitch-box">
+                <p>Imagine someone who can <strong>walk into an operating room</strong> and assist with a brain surgery, <strong>fix the navigation equipment</strong> when it glitches mid-procedure, and <strong>calm down the stressed surgeon</strong> while doing it. Then imagine he also built the team that keeps all that running across five countries. <strong>That's the package.</strong> Oh, and he paints miniatures in his spare time. Because of course he does.</p>
             </div>
         </section>
 
         <!-- SKILLS -->
-        <section class="section reveal">
-            <div class="section-header-row">
-                <h3>Capability Matrix</h3>
+        <section class="section">
+            <div class="sec-head">
+                <div class="sec-icon">⚡</div>
+                <h2>The Three Pillars</h2>
                 <div class="line"></div>
-                <span class="tag">Skill Tree</span>
             </div>
-            <div class="card-grid">
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-title-group">
-                            <div class="skill-icon cyan">🩺</div>
-                            <h4>Clinical Specialist</h4>
-                        </div>
-                        <span class="skill-tier advanced">Advanced</span>
+            <div class="triangle-wrap">
+                <div class="skill-row">
+                    <div class="skill-block">
+                        <div class="glow-line"></div>
+                        <span class="emoji">🩺</span>
+                        <h3>Clinical Specialist</h3>
+                        <span class="tier tier-cyan">Advanced Tier</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" data-w="90%"></div></div>
+                        <ul>
+                            <li>150+ pacemaker & ICD implants at St. Jude Medical</li>
+                            <li>Brain surgeries, DBS, tumor resections — the real deal</li>
+                            <li>ENT, orthopedic & spinal surgery support</li>
+                            <li>Cardiac devices across the full spectrum</li>
+                        </ul>
+                        <div class="skill-kicker">"Can troubleshoot life-saving equipment while a surgeon is literally holding someone's brain. No pressure."</div>
                     </div>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="90%"></div>
+                    <div class="skill-block">
+                        <div class="glow-line"></div>
+                        <span class="emoji">🔧</span>
+                        <h3>Technical Specialist</h3>
+                        <span class="tier tier-orange">Advanced Tier</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" data-w="90%"></div></div>
+                        <ul>
+                            <li>9 years as Service Supervisor & Manager in electronics</li>
+                            <li>Started as the repair guy, became the guy who trains repair guys</li>
+                            <li>Built technical service teams from zero</li>
+                            <li>3D printing hobbyist — fixes makerspace printers for fun</li>
+                        </ul>
+                        <div class="skill-kicker">"The kind of person who takes apart a 3D printer at 2 AM because the extruder made a funny noise."</div>
                     </div>
-                    <ul class="skill-list">
-                        <li>150+ pacemaker/ICD implants — St. Jude Medical, Norway</li>
-                        <li>Neurosurgery navigation: brain surgeries, DBS, tumor resections</li>
-                        <li>ENT surgeries: nasal procedures & removals</li>
-                        <li>Orthopedic & spinal surgeries</li>
-                        <li>Cardiac devices: pacemakers, ICDs, CRTD at Biotronik</li>
-                    </ul>
-                    <div class="skill-highlight">KEY ABILITY: First-line troubleshooting + high-level capital equipment repair</div>
                 </div>
-
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-title-group">
-                            <div class="skill-icon amber">🔧</div>
-                            <h4>Technical Specialist</h4>
-                        </div>
-                        <span class="skill-tier advanced">Advanced</span>
+                <div class="skill-row">
+                    <div class="skill-block" style="max-width: 100%;">
+                        <div class="glow-line"></div>
+                        <span class="emoji">🤝</span>
+                        <h3>Customer Relations — Master Tier</h3>
+                        <span class="tier tier-green">Master Tier</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" data-w="95%"></div></div>
+                        <ul>
+                            <li>Managed service across 5 Nordic countries (that's a lot of snow)</li>
+                            <li>Hospital surgery support with "patients on the line" mentality</li>
+                            <li>Sales experience that actually taught him what customers value</li>
+                            <li>Toastmasters veteran — can tell a story that holds a room</li>
+                            <li>Neuroleadership coach using the Lifebook framework</li>
+                        </ul>
+                        <div class="skill-kicker">"Serving without bullshit. When someone's life is on the table, you don't do corporate dance routines."</div>
                     </div>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="90%"></div>
-                    </div>
-                    <ul class="skill-list">
-                        <li>9 years in electronics as Service Supervisor/Manager</li>
-                        <li>Hands-on repair technician background</li>
-                        <li>Built and trained technical service teams from scratch</li>
-                        <li>3D printing & makerspace technical support</li>
-                        <li>Medtronic capital equipment: full repair capability</li>
-                    </ul>
-                    <div class="skill-highlight">KEY ABILITY: Can replicate his own capabilities by hiring and training technicians to match his skill level</div>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-title-group">
-                            <div class="skill-icon emerald">🤝</div>
-                            <h4>Customer Relations</h4>
-                        </div>
-                        <span class="skill-tier master">Master</span>
-                    </div>
-                    <div class="skill-bar-track">
-                        <div class="skill-bar-fill" data-width="95%"></div>
-                    </div>
-                    <ul class="skill-list">
-                        <li>Managed service across 5 Nordic countries</li>
-                        <li>Hospital surgery support — urgency of patient care mindset</li>
-                        <li>Sales experience: J&J, MicroMedic, NIMICS</li>
-                        <li>Toastmasters — public speaking & narrative mastery</li>
-                        <li>Neuroleadership coaching (Lifebook framework)</li>
-                    </ul>
-                    <div class="skill-highlight">KEY ABILITY: "Serving without bullshit" — patients-on-the-line mentality with zero tolerance for delay</div>
                 </div>
             </div>
         </section>
 
-        <!-- MISSION DEBRIEF -->
-        <section class="section reveal">
-            <div class="section-header-row">
-                <h3>Mission Debrief: 2026 - Where we go!</h3>
+        <!-- INTERVIEW STORY -->
+        <section class="section">
+            <div class="sec-head">
+                <div class="sec-icon">🎭</div>
+                <h2>The Interview That Proved a Point</h2>
                 <div class="line"></div>
-                <span class="tag">Interview</span>
             </div>
-            <div class="debrief-grid">
-                <div class="debrief-stat">
-                    <div class="label">Objective</div>
-                    <div class="value">Service Technician Role</div>
+            <div class="story-card">
+                <p class="story-intro">Walked into a room with two senior decision-makers. One had been in the service game for 25 years. The other ran the whole operation. The mission? Convince them that a guy who does clinical, technical, AND customer relations isn't a mythological creature.</p>
+
+                <div class="interviewer-pair">
+                    <div class="person-card">
+                        <div class="role-tag">Administrative Director</div>
+                        <div class="name">The Big Boss</div>
+                        <div class="note">Impressed by the resume. Impressed by the entrepreneurial background. Impressed by the sheer breadth of things this person has done. Basically impressed.</div>
+                        <div class="quote">"Quite impressed about the things achieved in life — very driven and curious."</div>
+                    </div>
+                    <div class="person-card">
+                        <div class="role-tag">Veteran Service Manager</div>
+                        <div class="name">The 25-Year Veteran</div>
+                        <div class="note">Skeptical at first. Challenged the idea that someone could be deep in both clinical AND technical. Was convinced. Rarely sees this combo.</div>
+                        <div class="quote">"These kind of profiles — we don't see very often."</div>
+                    </div>
                 </div>
-                <div class="debrief-stat">
-                    <div class="label">Outcome</div>
-                    <div class="value success">Successful Engagement</div>
+
+                <div class="what-they-said">
+                    <h4>✨ The Validation List</h4>
+                    <ul>
+                        <li>"Very irregular to meet somebody high on technical AND clinical AND customer relations"</li>
+                        <li>"These profiles don't come around often"</li>
+                        <li>Impressed by entrepreneurial spirit and diverse path</li>
+                        <li>Recognized as driven, curious, achievement-oriented</li>
+                        <li>Loved the structured, reflective communication style</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="interviewer-grid">
-                <div class="interviewer-card">
-                    <div class="interviewer-rank">Administrative Director</div>
-                    <div class="interviewer-name">Administrative Director</div>
-                    <div class="interviewer-note">Expressed strong impression with the candidate's resume, diverse achievements, entrepreneurial background, and evident drive. Recognized the candidate as highly curious and motivated.</div>
-                    <div class="interviewer-quote">"Quite impressed about the things achieved in life — very driven and curious."</div>
-                </div>
-    
             </div>
         </section>
 
         <!-- CAREER TIMELINE -->
-        <section class="section reveal">
-            <div class="section-header-row">
-                <h3>Operational History</h3>
+        <section class="section">
+            <div class="sec-head">
+                <div class="sec-icon">🗺️</div>
+                <h2>The Career Map</h2>
                 <div class="line"></div>
-                <span class="tag">Career</span>
             </div>
-            <div class="timeline-wrap">
-                <div class="timeline-entry completed">
+            <div class="tl-wrap">
+                <div class="tl-item done">
                     <div class="company">St. Jude Medical</div>
-                    <div class="role">Pacemaker / Cardiac Device Specialist</div>
+                    <div class="role">Pacemaker & Cardiac Device Specialist</div>
                     <div class="meta">Norway · 1.5 Years</div>
-                    <div class="achievement">150+ implants completed</div>
-                    <div class="note">Extensive implant experience in cardiac rhythm management. Left to seek better work-life grounding.</div>
+                    <div class="win">150+ implants. That's a lot of hearts.</div>
+                    <div class="context">Left to find better grounding. Norway is beautiful but lonely when you're always traveling.</div>
                 </div>
 
+                <div class="tl-item done">
+                    <div class="company">Johnson & Johnson</div>
+                    <div class="role">Power Tools Sales</div>
+                    <div class="meta">Denmark · Short Stint</div>
+                    <div class="context">Brief sales detour. Realized power tools weren't the calling. Moved on quickly.</div>
+                </div>
 
-                <div class="timeline-entry completed">
-                    <div class="company">Navigation Equipment — Neurosurgery</div>
-                    <div class="role">Clinical & Technical Consultant → Senior → Team Builder</div>
+                <div class="tl-item done">
+                    <div class="company">Neurosurgery Navigation</div>
+                    <div class="role">Clinical Consultant → Senior → Team Builder</div>
                     <div class="meta">Neurosurgery · ENT · Orthopedics</div>
-                    <div class="achievement">Built clinical & technical service team from scratch</div>
-                    <div class="note">Joined brain surgeries, DBS, tumor resections, spinal & hip surgery, ENT nasal procedures. Promoted to senior and then team lead.</div>
+                    <div class="win">Built a clinical & technical service team from scratch.</div>
+                    <div class="context">Joined actual brain surgeries. DBS. Tumor resections. Spinal work. Then got promoted to build the team. Felt like fighting uphill for recognition.</div>
                 </div>
 
-                <div class="timeline-entry completed">
+                <div class="tl-item done">
                     <div class="company">Medtronic</div>
-                    <div class="role">Service Engineer → Service Supervisor → Service Manager</div>
-                    <div class="meta">Nordics — Sweden · Norway · Iceland · Denmark · Finland</div>
-                    <div class="achievement">Hired & trained 4 employees. Built winning team. Managed full Nordic territory.</div>
-                    <div class="note">Restructuring casualty — service managers deprioritized vs. sales managers.</div>
-                    <div class="highlight">Career peak — most gratifying period: seeing people grow, building a team that took care of each other, setting expectations and believing in the team.</div>
+                    <div class="role">Service Engineer → Supervisor → Manager</div>
+                    <div class="meta">Nordics — SE · NO · IS · DK · FI</div>
+                    <div class="win">Hired & trained 4 people. Ran the whole Nordic service show.</div>
+                    <div class="context">Restructuring casualty. Service managers were deemed less important than sales managers. Corporate logic.</div>
+                    <div class="peak">🌟 Career peak. Most gratifying period: building a team that actually took care of each other, watching people grow, setting expectations and believing in them.</div>
                 </div>
 
-                <div class="timeline-entry completed">
+                <div class="tl-item done">
                     <div class="company">Biotronik</div>
                     <div class="role">Pacemaker / ICD / CRTD Specialist</div>
                     <div class="meta">Denmark · 8 Months</div>
-                    <div class="note">Electrode quality issue led to major customer loss → 20% sales shortfall → organizational downsizing.</div>
+                    <div class="context">Electrode quality issue → biggest customer bailed → 20% sales drop → downsizing. Sometimes it's not you, it's the electrode.</div>
                 </div>
 
-                <div class="timeline-entry active">
-                    <div class="company">Micromedic</div>
-                    <div class="role">Sales — Eppendorf Laboratory Equipment</div>
+                <div class="tl-item now">
+                    <div class="company">MicroMedic</div>
+                    <div class="role">Sales — Eppendorf Lab Equipment</div>
                     <div class="meta">Denmark · 1 Year (Current)</div>
-                    <div class="note">Non-exclusive territory with 3–4 competitors in Denmark. Laboratory budgets under pressure. Heavy cold-approach sales environment.</div>
-                    <div class="highlight">Seeking transition back to technical service and team-oriented roles where the full hybrid skillset can be utilized.</div>
+                    <div class="context">Non-exclusive territory. 3-4 competitors in Denmark. Labs are broke. Lots of cold-calling in hospital corridors.</div>
+                    <div class="peak">Actively seeking a way back to technical service and team leadership where the full hybrid skillset can actually breathe.</div>
                 </div>
             </div>
         </section>
 
-        <!-- INTERVIEW HIGHLIGHTS -->
-        <section class="section reveal">
-            <div class="section-header-row">
-                <h3>Engagement Analysis</h3>
+        <!-- UVP -->
+        <section class="section">
+            <div class="sec-head">
+                <div class="sec-icon">💎</div>
+                <h2>The Rare Drop</h2>
                 <div class="line"></div>
-                <span class="tag">Performance</span>
             </div>
-            <div class="highlights-grid">
-                <div class="highlight-card">
-                    <h4>✨ What Excelled</h4>
-                    <ul>
-                        <li>Structured self-introduction into 3 clear pillars: clinical, technical, and customer relations</li>
-                        <li>Reflected questions back to interviewers, demonstrating they had "already taken the journey"</li>
-                        <li>Demonstrated deep knowledge of interviewers' career backgrounds and came well-prepared</li>
-                        <li>Addressed potential "boredom" concern with authenticity and context</li>
-                        <li>Positioned higher salary request as justified by broader skill utilization</li>
-                    </ul>
-                </div>
-                <div class="highlight-card">
-                    <h4>💬 External Validation</h4>
-                    <ul>
-                        <li>"Very irregular to meet somebody high on technical AND clinical AND customer relations"</li>
-                        <li>"These profiles don't come around often"</li>
-                        <li>Impressed by entrepreneurial spirit and diverse career path</li>
-                        <li>Recognized as driven, curious, and achievement-oriented</li>
-                        <li>Appreciated the structured, reflective communication style</li>
-                    </ul>
-                </div>
-                <div class="uvp-banner">
-                    <div class="uvp-label">Unique Value Proposition</div>
-                    <div class="uvp-text">A rare hybrid combining deep clinical expertise, advanced technical capability, and master-level customer relations — a profile rarely encountered in the field.</div>
-                </div>
+            <div class="uvp">
+                <div class="label">Unique Value Proposition</div>
+                <div class="text">A rare hybrid combining deep clinical expertise, advanced technical capability, and master-level customer relations — a profile rarely encountered in the field.</div>
             </div>
         </section>
 
         <!-- DREAM JOB -->
-        <section class="section reveal">
-            <div class="section-header-row">
-                <h3>Strategic Objective</h3>
+        <section class="section">
+            <div class="sec-head">
+                <div class="sec-icon">🎯</div>
+                <h2>The Dream Setup</h2>
                 <div class="line"></div>
-                <span class="tag">Target Role</span>
             </div>
-            <div class="dream-wrap">
-                <div class="memory-card">
+            <div class="dream-grid">
+                <div class="dream-memory">
                     <div class="mem-label">Career Peak Reference</div>
                     <div class="mem-text">Medtronic — hiring, training, and watching the team grow while managing the full Nordic service territory. Building a winning team that took care of each other.</div>
                 </div>
-                <div class="dream-card must">
+                <div class="dream-card want">
                     <h4>★ Must-Haves</h4>
                     <ul>
                         <li>Clinical + technical hybrid work</li>
@@ -1273,11 +969,11 @@
                         <li>Creative problem-solving culture</li>
                     </ul>
                 </div>
-                <div class="dream-card avoid">
-                    <h4>✕ Avoid</h4>
+                <div class="dream-card nope">
+                    <h4>✕ Hard Pass</h4>
                     <ul>
                         <li>Pure sales (cold calling, corridor chasing)</li>
-                        <li>Non-exclusive territories with excessive competition</li>
+                        <li>Non-exclusive territories with too many competitors</li>
                         <li>Roles that underutilize the full hybrid skillset</li>
                     </ul>
                 </div>
@@ -1285,37 +981,33 @@
         </section>
 
         <!-- PERSONAL REFINERY -->
-        <section class="section reveal">
-            <div class="section-header-row">
-                <h3>Personal Refinery</h3>
+        <section class="section">
+            <div class="sec-head">
+                <div class="sec-icon">🎨</div>
+                <h2>The Human Behind the Resume</h2>
                 <div class="line"></div>
-                <span class="tag">Beyond Work</span>
             </div>
-            <div class="refinery-grid">
-                <div class="refinery-card">
-                    <h4>🎨 Creative Outlets</h4>
-                    <div class="tag-cloud">
-                        <span class="tag-pill">Warhammer Game Mastering</span>
-                        <span class="tag-pill">3D Printing</span>
-                        <span class="tag-pill">Miniature Painting</span>
-                        <span class="tag-pill">Classical Drawing</span>
-                        <span class="tag-pill">Painting & Illustration</span>
-                        <span class="tag-pill">Toastmasters</span>
-                        <span class="tag-pill">Public Speaking</span>
-                        <span class="tag-pill">Makerspace Support</span>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <h4>🎲 Creative Outlets</h4>
+                    <div class="tag-pool">
+                        <span class="tpill tp-cyan">Warhammer Game Mastering</span>
+                        <span class="tpill tp-orange">3D Printing</span>
+                        <span class="tpill tp-pink">Miniature Painting</span>
+                        <span class="tpill tp-green">Classical Drawing</span>
+                        <span class="tpill tp-cyan">Painting & Illustration</span>
+                        <span class="tpill tp-orange">Toastmasters</span>
+                        <span class="tpill tp-pink">Public Speaking</span>
+                        <span class="tpill tp-green">Makerspace Support</span>
                     </div>
                 </div>
-                <div class="refinery-card">
-                    <h4>📜 Operating Philosophy</h4>
-                    <p class="philosophy-text">
-                        "Life experience is built on two foundations: our sensory experience in the present moment, and our recording self — how we narrate our story, how we teach to learn, and how we learn to tell compelling narratives that others want to hear."
-                    </p>
+                <div class="ref-card">
+                    <h4>📜 Life Philosophy</h4>
+                    <p class="phil-text">"Life experience is built on two foundations: our sensory experience in the present moment, and our recording self — how we narrate our story, how we teach to learn, and how we learn to tell compelling narratives that others actually want to hear."</p>
                 </div>
-                <div class="refinery-card">
-                    <h4>💪 Resilience & Drive</h4>
-                    <p class="philosophy-text">
-                        Technical calling remains strong — evidenced by ongoing 3D printing and makerspace engagement alongside a 15-year MedTech career. Sales experience provided valuable customer-value perspective, but the core identity is technical and service-oriented.
-                    </p>
+                <div class="ref-card">
+                    <h4>💪 What Drives the Engine</h4>
+                    <p class="phil-text">The technical calling never went away — it just got buried under sales targets for a while. The 3D printer in the corner and the makerspace community are proof. Sales taught what customers value, but the core identity is building, fixing, and leading technical teams.</p>
                 </div>
             </div>
         </section>
@@ -1323,43 +1015,48 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="site-footer">
-        <p>STRATEGIC PROFILE // OPERATIONS COMMANDER — MEDICAL TECHNOLOGY</p>
-        <p class="tagline">Built from the interview debrief.</p>
+    <footer class="footer">
+        <div class="big-emoji">👋</div>
+        <p>That's the story. The rest is up to the next chapter.</p>
+        <p class="tagline">Built from an interview that proved this profile is real.</p>
     </footer>
 
     <script>
-        // Animate skill bars on scroll
-        const skillBars = document.querySelectorAll('.skill-bar-fill');
-        const barObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const width = entry.target.getAttribute('data-width');
-                    entry.target.style.width = width;
-                }
-            });
-        }, { threshold: 0.3 });
+        // Generate particles
+        const particleContainer = document.getElementById('particles');
+        const colors = ['#00f0ff', '#ff9500', '#ff5ebc', '#00ff88', '#a855f7'];
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            p.style.animationDuration = (15 + Math.random() * 20) + 's';
+            p.style.animationDelay = (Math.random() * 15) + 's';
+            p.style.width = (2 + Math.random() * 2) + 'px';
+            p.style.height = p.style.width;
+            particleContainer.appendChild(p);
+        }
 
-        skillBars.forEach(bar => barObserver.observe(bar));
+        // Skill bars
+        document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.style.width = e.target.getAttribute('data-w');
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer.observe(bar);
+        });
 
-        // Reveal animations
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        reveals.forEach(el => revealObserver.observe(el));
-
-        // Subtle parallax on starfield
-        document.addEventListener('mousemove', (e) => {
-            const stars = document.querySelector('.starfield');
-            const x = (e.clientX / window.innerWidth - 0.5) * 15;
-            const y = (e.clientY / window.innerHeight - 0.5) * 15;
-            stars.style.transform = `translate(${x}px, ${y}px)`;
+        // Reveal sections
+        document.querySelectorAll('.section').forEach(sec => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+            observer.observe(sec);
         });
     </script>
 </body>
